@@ -1,0 +1,9 @@
+# Use the official PostgreSQL image as the base image
+FROM postgres
+
+# Set the environment variable to configure the password for PostgreSQL
+ENV POSTGRES_PASSWORD=password1
+ENV POSTGRES_USER=test
+
+# Create a database and load the dummy data
+COPY init-target-shipcars.sql /docker-entrypoint-initdb.d/

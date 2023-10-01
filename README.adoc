@@ -1,0 +1,40 @@
+# Database Sync Service: A Camel Quarkus example
+
+
+The Database Sync Service is a Java-based application built using the Apache Camel framework. This service synchronizes data between two databases, allowing you to keep multiple databases up-to-date with the same data. This README provides an overview of the service, its configuration, and how to run it.
+
+## Configuration
+The Database Sync Service can be configured using a properties file (application.properties) or environment variables. Here are the key configuration options:
+
+## Database Setup Script
+
+The `setup-databases.sh` script is a Bash script that simplifies the process of managing Docker Compose services for your project. It allows you to start, stop, and clear Docker Compose services with ease. This script is particularly useful for managing database containers for development and testing purposes.
+
+Run the script with one of the following commands:
+
+* `./setup-databases.sh start`: Starts the Docker Compose services defined in your docker-compose.yml file located in the utils directory. This is useful when you want to launch your database containers.
+
+* `./setup-databases.sh stop` : Stops the Docker Compose services. This can be used when you want to shut down your database containers.
+
+* `./setup-databases.sh clear` : Stops the Docker Compose services and also removes associated volumes. This effectively clears your databases and is useful when you want to start fresh.
+
+## Quarkus Configuration for Database Connections
+
+This configuration defines the database connections for a Quarkus-based application. It includes settings for both source and target databases, each with its own set of properties. The application uses these configurations to connect to and interact with databases.
+
+## Start in the Development mode
+[source,shell]
+----
+$ mvn clean compile quarkus:dev
+----
+
+## Native mode
+
+To prepare a native executable using GraalVM, run the following command:
+
+[source,shell]
+----
+$ mvn clean package -Pnative
+$ ./target/*-runner
+
+----

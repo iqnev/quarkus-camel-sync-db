@@ -1,0 +1,45 @@
+version: '3'
+
+services:
+  postgres-source-simple:
+    build:
+      context: .
+      dockerfile: Dockerfile.source.simple
+    container_name: postgres-db-source-simple
+    networks:
+      - postgres-network
+    ports:
+      - "5001:5432"  # Map port 5001 on the host to 5432 in the container
+
+  postgres-source-shipcars:
+    build:
+      context: .
+      dockerfile: Dockerfile.source.shipcars
+    container_name: postgres-db-source-shipcars
+    networks:
+      - postgres-network
+    ports:
+      - "5002:5432"  # Map port 5002 on the host to 5432 in the container
+
+  postgres-target-simple:
+    build:
+      context: .
+      dockerfile: Dockerfile.target.simple
+    container_name: postgres-db-target-simple
+    networks:
+      - postgres-network
+    ports:
+      - "6001:5432"  # Map port 6001 on the host to 5432 in the container
+
+  postgres-target-shipcars:
+    build:
+      context: .
+      dockerfile: Dockerfile.target.shipcars
+    container_name: postgres-db-target-shipcars
+    networks:
+      - postgres-network
+    ports:
+      - "6002:5432"  # Map port 6002 on the host to 5432 in the container
+
+networks:
+  postgres-network:
